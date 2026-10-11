@@ -69,6 +69,8 @@ Focused on improving operational efficiency, transparency, and data-driven decis
 
 **`InsurTech` `Process Automation` `Data Management` `Full-Stack`**
 
+[![Live Platform](https://img.shields.io/badge/Live_Platform-8B5CF6?style=flat-square&logo=vercel&logoColor=white)](https://ammcbuildersinsurance.com)
+
 </td>
 </tr>
 </table>
@@ -77,12 +79,14 @@ Focused on improving operational efficiency, transparency, and data-driven decis
 
 ```yaml
 engineering:
+
   - full-stack product development
   - backend systems and APIs
   - AI-assisted workflows
   - data platforms and automation
   - reliable, maintainable software
 beyond_code:
+
   - food and process engineering
   - technology for real-world industries
   - visual design and product thinking
@@ -116,8 +120,8 @@ beyond_code:
 I'm interested in collaborating on products that make complex work simpler, faster, and more accessible.
 
 **GitHub:** `@bolajeee`  
-**Portfolio:** `Add your portfolio URL here`  
-**LinkedIn:** `Add your LinkedIn URL here`
+**Portfolio:** `https://bolajeee.vercel.app`  
+**LinkedIn:** `https://linkedin.com/in/bolajeee`
 
 <div align="center">
 
