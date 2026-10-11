@@ -4,7 +4,6 @@
 
 <br />
 
-<a href="https://leaderscvchecker.com"><img src="https://img.shields.io/badge/EXPLORE-Leaders%20CV%20Checker-8B5CF6?style=for-the-badge&labelColor=0D1117" alt="Leaders CV Checker" /></a>
 <img src="https://img.shields.io/badge/FOCUS-Full--Stack%20%2F%20AI-00D9FF?style=for-the-badge&labelColor=0D1117" alt="Full-stack and AI" />
 <img src="https://img.shields.io/badge/STATUS-Always%20Building-20C997?style=for-the-badge&labelColor=0D1117" alt="Always building" />
 
