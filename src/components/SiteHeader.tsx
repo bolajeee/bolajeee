@@ -8,6 +8,7 @@ import { FiArrowUpRight, FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
 
 const links = [
   { label: "Work", href: "/#work" },
+  { label: "Engineering", href: "/engineering" },
   { label: "About", href: "/#about" },
   { label: "Recognition", href: "/#recognition" },
 ];

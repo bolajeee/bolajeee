@@ -88,6 +88,7 @@ export const credentials = [
   { title: "Virtual Assistant Programme — With Honors", detail: "ALX", year: "2022", category: "Professional development" },
   { title: "AI for Beginners", detail: "HP LIFE", year: "—", category: "AI" },
   { title: "Project Management Course", detail: "FoodTech course", year: "—", category: "Professional development" },
+  { title: "Design of Experiments", detail: "Nestlé FoodTech", year: "—", category: "Food engineering" },
   { title: "Consumer Understanding", detail: "Nestlé FoodTech", year: "—", category: "Food engineering" },
   { title: "Food Product Development", detail: "Nestlé FoodTech", year: "—", category: "Food engineering" },
   { title: "Side Hustle Certificate", detail: "Side Hustle", year: "—", category: "Professional development" },

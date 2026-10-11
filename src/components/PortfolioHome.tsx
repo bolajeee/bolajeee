@@ -33,13 +33,13 @@ export default function PortfolioHome() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: .45 }}
                 className="eyebrow"
-              >Software engineer · technical lead</motion.div>
+              >Food engineer · software engineer · technical lead</motion.div>
               <h1>
-                <motion.span className="line" initial={reduceMotion ? false : { opacity: 0, y: 34 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .12 }}>Engineering ideas</motion.span>
-                <motion.span className="line accent-word" initial={reduceMotion ? false : { opacity: 0, y: 34 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .65, delay: .25 }}>into experiences.</motion.span>
+                <motion.span className="line" initial={reduceMotion ? false : { opacity: 0, y: 34 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .12 }}>An engineer at heart.</motion.span>
+                <motion.span className="line accent-word" initial={reduceMotion ? false : { opacity: 0, y: 34 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .65, delay: .25 }}>A builder by practice.</motion.span>
               </h1>
               <motion.p className="hero-summary" initial={reduceMotion ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .42 }}>
-                I’m Omobolaji Ibrahim — Bolajeee. I build thoughtful digital products, bringing engineering, product thinking, and a systems mindset to real-world problems.
+                I’m Omobolaji Ibrahim — Bolajeee. My foundation is in food engineering; software and data expand how I build, investigate, and solve problems across disciplines.
               </motion.p>
               <motion.div className="hero-actions" initial={reduceMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .45, delay: .58 }}>
                 <a className="button-dark" href="#work">Explore selected work <FiArrowDownRight size={17} /></a>
@@ -48,7 +48,7 @@ export default function PortfolioHome() {
             </div>
             <Reveal delay={.2} className="hero-note">
               <strong>Based in Nigeria.<br />Working everywhere.</strong>
-              Software engineering shaped by a background in food engineering, technical leadership, and product delivery.
+              Two connected practices: food systems and software. Each begins with understanding a problem as a system, then finding a useful way to improve it.
             </Reveal>
           </div>
           <div className="hero-foot"><span>Independent-minded engineering</span><span>Scroll to explore ↓</span></div>
@@ -97,10 +97,11 @@ export default function PortfolioHome() {
 
       <section id="about" className="section about-section">
         <div className="site-shell about-grid">
-          <Reveal><span className="eyebrow">02 / A little about me</span><h2 className="section-heading">Curious by nature.<br />An engineer by training.</h2></Reveal>
+          <Reveal><span className="eyebrow">02 / A little about me</span><h2 className="section-heading">One engineer.<br />Two connected disciplines.</h2></Reveal>
           <Reveal delay={.08} className="about-copy">
-            <p>My journey began in food engineering, where I learned to look closely at systems, processes, and the details that make them work.</p>
-            <p>Today, I bring that same curiosity to software: shaping digital products, solving complex problems, and working with people to turn ideas into useful experiences.</p>
+            <p>I’m an engineer whose work spans food engineering and software. My academic foundation taught me to study process, materials, and the conditions behind a result.</p>
+            <p>Today I build software products and lead technical delivery, while exploring how computational methods can support better decisions and more efficient industrial processes.</p>
+            <p><Link className="text-link" href="/engineering">Explore my engineering & research <FiArrowUpRight className="arrow" /></Link></p>
             <div className="experience-list" aria-label="Selected experience">
               {experience.map((item) => <div className="experience-row" key={item.role}><time>{item.period}</time><strong>{item.role}</strong><span>{item.company}</span></div>)}
             </div>
