@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 112" role="img" aria-labelledby="title">
+  <title id="title">Keep building</title>
+  <rect width="1200" height="112" rx="18" fill="#222522"/>
+  <path d="M0 78h1200" stroke="#F6F5F1" stroke-opacity=".12"/>
+  <circle cx="54" cy="39" r="6" fill="#B8F36B"/>
+  <text x="76" y="45" fill="#F6F5F1" font-family="Arial, sans-serif" font-size="16" letter-spacing="3">DESIGNED WITH INTENTION · BUILT WITH CURIOSITY</text>
+  <text x="54" y="98" fill="#F6F5F1" fill-opacity=".55" font-family="Arial, sans-serif" font-size="12" letter-spacing="2">BOLAJEEE</text>
+  <text x="1145" y="98" fill="#B8F36B" font-family="Arial, sans-serif" font-size="12" text-anchor="end" letter-spacing="2">END OF TRANSMISSION</text>
+</svg>

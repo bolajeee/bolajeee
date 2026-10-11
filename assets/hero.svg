@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Omobolaji Ibrahim — Bolajeee</title>
+  <desc id="desc">Interdisciplinary engineer working across food engineering and software.</desc>
+  <rect width="1200" height="360" rx="24" fill="#171918"/>
+  <circle cx="1010" cy="180" r="235" fill="none" stroke="#B8F36B" stroke-opacity=".16"/>
+  <circle cx="1010" cy="180" r="178" fill="none" stroke="#B8F36B" stroke-opacity=".2"/>
+  <circle cx="1010" cy="180" r="118" fill="none" stroke="#B8F36B" stroke-opacity=".28"/>
+  <path d="M752 0v360M809 0v360" stroke="#f6f5f1" stroke-opacity=".08"/>
+  <circle cx="885" cy="180" r="7" fill="#B8F36B"/>
+  <text x="82" y="82" fill="#B8F36B" font-family="Arial, sans-serif" font-size="17" letter-spacing="4">FOOD ENGINEERING · SOFTWARE · RESEARCH</text>
+  <text x="78" y="190" fill="#F6F5F1" font-family="Arial, sans-serif" font-size="62" font-weight="600" letter-spacing="-3">OMOBOLAJI IBRAHIM</text>
+  <text x="82" y="250" fill="#F6F5F1" fill-opacity=".72" font-family="Arial, sans-serif" font-size="27">An engineer at heart. A builder by practice.</text>
+  <text x="82" y="310" fill="#F6F5F1" fill-opacity=".46" font-family="Arial, sans-serif" font-size="15" letter-spacing="3">BOLAJEEE</text>
+</svg>
