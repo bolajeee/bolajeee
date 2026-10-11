@@ -102,9 +102,9 @@ beyond_code:
 
 <div align="center">
 
-<!-- Replace YOUR_GITHUB_USERNAME in the URLs below after sharing your GitHub handle. -->
-<img src="https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME&show_icons=true&hide_border=true&bg_color=0D1117&title_color=00D9FF&text_color=C9D1D9&icon_color=8B5CF6" height="160" alt="GitHub statistics" />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_GITHUB_USERNAME&layout=compact&hide_border=true&bg_color=0D1117&title_color=00D9FF&text_color=C9D1D9" height="160" alt="Most-used languages" />
+<!-- Replace bolajeee in the URLs below after sharing your GitHub handle. -->
+<img src="https://github-readme-stats.vercel.app/api?username=bolajeee&show_icons=true&hide_border=true&bg_color=0D1117&title_color=00D9FF&text_color=C9D1D9&icon_color=8B5CF6" height="160" alt="GitHub statistics" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=bolajeee&layout=compact&hide_border=true&bg_color=0D1117&title_color=00D9FF&text_color=C9D1D9" height="160" alt="Most-used languages" />
 
 </div>
 
@@ -115,7 +115,7 @@ beyond_code:
 
 I'm interested in collaborating on products that make complex work simpler, faster, and more accessible.
 
-**GitHub:** `@YOUR_GITHUB_USERNAME`  
+**GitHub:** `@bolajeee`  
 **Portfolio:** `Add your portfolio URL here`  
 **LinkedIn:** `Add your LinkedIn URL here`
 
