@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+<img src="./assets/hero.svg" width="100%" alt="Omobolaji Ibrahim — Software Engineer" />
 
-First, run the development server:
+<br />
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+<a href="https://leaderscvchecker.com"><img src="https://img.shields.io/badge/EXPLORE-Leaders%20CV%20Checker-8B5CF6?style=for-the-badge&labelColor=0D1117" alt="Leaders CV Checker" /></a>
+<img src="https://img.shields.io/badge/FOCUS-Full--Stack%20%2F%20AI-00D9FF?style=for-the-badge&labelColor=0D1117" alt="Full-stack and AI" />
+<img src="https://img.shields.io/badge/STATUS-Always%20Building-20C997?style=for-the-badge&labelColor=0D1117" alt="Always building" />
+
+</div>
+
+### `> whoami`
+
+I'm **Omobolaji Ibrahim**, a software engineer building useful digital products and intelligent systems. My background in **Food Engineering** shapes how I approach software: understand the process, find the bottleneck, and design a solution that works in the real world.
+
+I work across full-stack development, backend systems, automation, and data-driven products — with a growing interest in the intersection of **AI, engineering, and industry**.
+
+```text
+$ ./mission.sh
+> Build thoughtfully.
+> Solve practical problems.
+> Keep learning, keep shipping.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### `> selected_work`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<table>
+<tr>
+<td width="50%" valign="top">
 
-## Learn More
+### 01 / Leaders AI Resume Analyser
 
-To learn more about Next.js, take a look at the following resources:
+An AI-powered recruitment platform that helps hiring teams analyse resumes, evaluate candidates against role-specific requirements, and make more informed screening decisions.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Designed to make recruitment faster, more structured, and human-centred.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**`AI` `Recruitment Tech` `Full-Stack`**
 
-## Deploy on Vercel
+[![Live Platform](https://img.shields.io/badge/Live_Platform-8B5CF6?style=flat-square&logo=vercel&logoColor=white)](https://leaderscvchecker.com)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+</td>
+<td width="50%" valign="top">
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 02 / Civic AI
+
+An AI-focused project exploring how intelligent technologies can be applied to civic challenges and public-interest solutions.
+
+Built around the idea of making technology more useful, accessible, and impactful.
+
+**`Artificial Intelligence` `Civic Tech` `Open Source`**
+
+[![GitHub Repository](https://img.shields.io/badge/View_Repository-00D9FF?style=flat-square&logo=github&logoColor=white)](https://github.com/bolajeee/Civic-ai)
+
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td valign="top">
+
+### 03 / AMMC Builders Liability Insurance
+
+An engineering-driven digital platform designed to support builders' liability insurance operations, eligibility assessment, process automation, and structured record management.
+
+Focused on improving operational efficiency, transparency, and data-driven decision-making within the insurance workflow.
+
+**`InsurTech` `Process Automation` `Data Management` `Full-Stack`**
+
+</td>
+</tr>
+</table>
+
+### `> engineering_interests`
+
+```yaml
+engineering:
+  - full-stack product development
+  - backend systems and APIs
+  - AI-assisted workflows
+  - data platforms and automation
+  - reliable, maintainable software
+beyond_code:
+  - food and process engineering
+  - technology for real-world industries
+  - visual design and product thinking
+```
+
+### `> toolkit`
+
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=ts,js,react,nextjs,nodejs,python,postgres,mongodb,git,github,docker,figma&theme=dark&perline=6" alt="Technology icons: TypeScript, JavaScript, React, Next.js, Node.js, Python, PostgreSQL, MongoDB, Git, GitHub, Docker, and Figma" />
+
+<sub>Tools and technologies I work with or explore — always expanding the toolkit.</sub>
+
+</div>
+
+### `> activity_log`
+
+<div align="center">
+
+<!-- Replace bolajeee in the URLs below after sharing your GitHub handle. -->
+<img src="https://github-readme-stats.vercel.app/api?username=bolajeee&show_icons=true&hide_border=true&bg_color=0D1117&title_color=00D9FF&text_color=C9D1D9&icon_color=8B5CF6" height="160" alt="GitHub statistics" />
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=bolajeee&layout=compact&hide_border=true&bg_color=0D1117&title_color=00D9FF&text_color=C9D1D9" height="160" alt="Most-used languages" />
+
+</div>
+
+> [!NOTE]
+> GitHub statistics are provided by a third-party service and may occasionally be unavailable. Language charts reflect repository data, not overall proficiency.
+
+### `> connect`
+
+I'm interested in collaborating on products that make complex work simpler, faster, and more accessible.
+
+**GitHub:** `@bolajeee`  
+**Portfolio:** `Add your portfolio URL here`  
+**LinkedIn:** `Add your LinkedIn URL here`
+
+<div align="center">
+
+<img src="./assets/footer.svg" width="100%" alt="End of transmission — Keep building" />
+
+<sub>Designed with intention. Built with curiosity.</sub>
+
+</div>
