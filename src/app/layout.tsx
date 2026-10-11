@@ -1,11 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import "./embla.css";
 import { ThemeProviders } from "@/components/ThemeProviders";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import ScrollProgress from "@/components/ScrollProgress";
-import FloatingContact from "@/components/FloatingContact";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 import localFont from "next/font/local";
 
 const geistSans = localFont({
@@ -20,10 +17,18 @@ const geistMono = localFont({
 
 
 export const metadata: Metadata = {
-  title: "Ibrahim O. Ibrahim - Fullstack Engineer & Food Process Innovator",
-  description: "Portfolio of Ibrahim O. Ibrahim - Fullstack Engineer with 5+ years of experience in React.js, React Native, Node.js, and modern web technologies. Specializing in scalable applications and food process innovation.",
-  keywords: "fullstack engineer, react developer, nodejs, food process innovation, web development, mobile development",
-  authors: [{ name: "Ibrahim O. Ibrahim" }],
+  title: {
+    default: "Bolajeee — Software Engineer & Technical Lead",
+    template: "%s — Bolajeee",
+  },
+  description: "Omobolaji Ibrahim (Bolajeee) is a software engineer and technical lead building thoughtful digital products and solving real-world problems.",
+  keywords: ["Omobolaji Ibrahim", "Bolajeee", "software engineer", "technical lead", "full-stack development"],
+  authors: [{ name: "Omobolaji Ibrahim" }],
+  openGraph: {
+    title: "Bolajeee — Engineering ideas into experiences",
+    description: "Selected product work by Omobolaji Ibrahim, software engineer and technical lead.",
+    type: "website",
+  },
 };
 
 export const viewport: Viewport = {
@@ -37,16 +42,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProviders>
-          <ScrollProgress />
-          <Navbar />
+          <SiteHeader />
           {children}
-          <Footer />
-          <FloatingContact />
+          <SiteFooter />
         </ThemeProviders>
       </body>
     </html>
