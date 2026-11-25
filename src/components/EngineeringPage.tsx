@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { contactEmail } from "@/content/portfolio";
 import { FiArrowDownRight, FiArrowUpRight, FiExternalLink } from "react-icons/fi";
 
 const findings = [
@@ -113,7 +114,7 @@ export default function EngineeringPage() {
       </section>
 
       <section className="engineering-contact">
-        <div className="site-shell engineering-contact-row"><div><p className="eyebrow">Research & engineering enquiries</p><h2>Interested in food systems, data, or process engineering?</h2></div><a className="button-dark" href="mailto:ibrahimomobolaji1999@gmail.com">Get in touch <FiArrowUpRight /></a></div>
+        <div className="site-shell engineering-contact-row"><div><p className="eyebrow">Research & engineering enquiries</p><h2>Interested in food systems, data, or process engineering?</h2></div><a className="button-solid" href={`mailto:${contactEmail}`}>Get in touch <FiArrowUpRight /></a></div>
       </section>
       <div className="site-shell engineering-back"><Link className="text-link" href="/#about">Back to the main portfolio <FiArrowUpRight /></Link></div>
     </main>

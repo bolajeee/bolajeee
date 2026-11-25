@@ -1,136 +1,129 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "framer-motion";
 import { FiArrowDownRight, FiArrowUpRight } from "react-icons/fi";
-import { contactEmail, experience, featuredProjects, otherProjects, resumeUrl } from "@/content/portfolio";
-import ProjectArtwork from "@/components/ProjectArtwork";
+import { capabilities, contactEmail, experience, recognition, resumeUrl } from "@/content/portfolio";
+import WorkStage from "@/components/home/WorkStage";
+import MoreWork from "@/components/home/MoreWork";
+import StackGrowth from "@/components/home/StackGrowth";
+import Magnetic from "@/components/Magnetic";
 
-function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const reduceMotion = useReducedMotion();
-  return (
-    <motion.div
-      className={className}
-      initial={reduceMotion ? false : { opacity: 0, y: 22 }}
-      whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
-    >{children}</motion.div>
-  );
-}
+const HeroField = dynamic(() => import("@/components/home/HeroField"), { ssr: false });
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function PortfolioHome() {
   const reduceMotion = useReducedMotion();
+  const enter = (delay: number) => ({
+    initial: reduceMotion ? false : { opacity: 0, y: 28 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, delay, ease },
+  });
+
   return (
     <main>
       <section className="hero" id="home">
-        <div className="site-shell">
-          <div className="hero-grid">
-            <div className="hero-copy">
-              <motion.div
-                initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: .45 }}
-                className="eyebrow"
-              >Food engineer · software engineer · technical lead</motion.div>
-              <h1>
-                <motion.span className="line" initial={reduceMotion ? false : { opacity: 0, y: 34 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .12 }}>An engineer at heart.</motion.span>
-                <motion.span className="line accent-word" initial={reduceMotion ? false : { opacity: 0, y: 34 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .65, delay: .25 }}>A builder by practice.</motion.span>
-              </h1>
-              <motion.p className="hero-summary" initial={reduceMotion ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .42 }}>
-                I’m Omobolaji Ibrahim — Bolajeee. My foundation is in food engineering; software and data expand how I build, investigate, and solve problems across disciplines.
-              </motion.p>
-              <motion.div className="hero-actions" initial={reduceMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .45, delay: .58 }}>
-                <a className="button-dark" href="#work">Explore selected work <FiArrowDownRight size={17} /></a>
-                <a className="text-link" href={resumeUrl} target="_blank" rel="noreferrer">View résumé <FiArrowUpRight className="arrow" /></a>
-              </motion.div>
-            </div>
-            <Reveal delay={.2} className="hero-note">
-              <strong>Based in Nigeria.<br />Working everywhere.</strong>
-              Two connected practices: food systems and software. Each begins with understanding a problem as a system, then finding a useful way to improve it.
-            </Reveal>
-          </div>
-          <div className="hero-foot"><span>Independent-minded engineering</span><span>Scroll to explore ↓</span></div>
+        <HeroField />
+        <div className="site-shell hero-inner">
+          <h1 className="hero-title">
+            <motion.span {...enter(0.1)}>I build the systems</motion.span>
+            <motion.span {...enter(0.2)}>behind products</motion.span>
+            <motion.span {...enter(0.3)}>people rely on.</motion.span>
+          </h1>
+          <motion.p className="hero-lede" {...enter(0.45)}>
+            I’m Omobolaji Ibrahim, a software engineer. I take products from idea to production: the interface, the APIs and data behind it, and the infrastructure that ships and runs it.
+          </motion.p>
+          <motion.div className="hero-actions" {...enter(0.55)}>
+            <Magnetic><a className="button-solid" href="#work">See the work <FiArrowDownRight size={17} /></a></Magnetic>
+            <a className="text-link" href={resumeUrl} target="_blank" rel="noreferrer">Résumé <FiArrowUpRight className="arrow" /></a>
+          </motion.div>
+          <motion.p className="hero-caption" {...enter(0.8)}>
+            Scattered signals, gathered into structure. Move your pointer through the field.
+          </motion.p>
         </div>
       </section>
 
-      <section id="work" className="section work-section">
+      <section id="work" className="work-section">
+        <div className="site-shell section-head">
+          <h2 className="section-title">Selected work</h2>
+          <p>Four products I took across the stack, from the interface to where they run.</p>
+        </div>
+        <WorkStage />
+        <div className="site-shell more-work">
+          <h3 className="more-title">More work</h3>
+          <MoreWork />
+        </div>
+      </section>
+
+      <section className="capabilities-section">
         <div className="site-shell">
-          <Reveal className="section-intro">
-            <div><span className="eyebrow">01 / Selected work</span><h2 className="section-heading">A few problems<br />worth solving.</h2></div>
-            <p>Product work shaped by people, operations, and the details that make systems useful.</p>
-          </Reveal>
-          <div className="feature-list">
-            {featuredProjects.map((project, index) => (
-              <Reveal key={project.slug} delay={index * .07}>
-                <article className="project-card">
-                  <div className="project-info">
-                    <div className="project-meta"><span>{project.number} / {project.discipline}</span><span>Case study</span></div>
-                    <div>
-                      <h3>{project.title}</h3>
-                      <p>{project.short}</p>
-                    </div>
-                    <Link className="text-link" href={`/work/${project.slug}`}>Explore the work <FiArrowUpRight className="arrow" /></Link>
-                  </div>
-                  <ProjectArtwork kind={project.visual} />
-                </article>
-              </Reveal>
+          <div className="section-head">
+            <h2 className="section-title">The whole stack</h2>
+            <p>Every layer a product needs, and the one I’m deepening now.</p>
+          </div>
+          <dl className="capability-list">
+            {capabilities.map((item) => (
+              <div key={item.title} className="capability-row">
+                <dt>{item.title}</dt>
+                <dd>
+                  <p>{item.text}</p>
+                  <span>{item.tools}</span>
+                </dd>
+              </div>
             ))}
-          </div>
-
-          <div className="more-work">
-            <div className="more-work-heading"><h3>More work</h3><span className="muted">A few other builds</span></div>
-            <div className="other-projects">
-              {otherProjects.map((project) => (
-                <a className="other-project" key={project.title} href={project.href} target="_blank" rel="noreferrer">
-                  <div style={{ position: "relative", width: "100%", aspectRatio: "1.8", overflow: "hidden", borderRadius: ".55rem", marginBottom: "1rem", background: "var(--surface)" }}>
-                    <Image src={project.image} alt={`${project.title} project preview`} fill sizes="(max-width: 520px) 90vw, (max-width: 800px) 44vw, 28vw" style={{ objectFit: "cover", transition: "transform .35s ease" }} />
-                  </div>
-                  <span>{project.description}</span><strong>{project.title} <FiArrowUpRight className="arrow" /></strong>
-                </a>
-              ))}
-            </div>
-          </div>
+          </dl>
         </div>
       </section>
 
-      <section id="about" className="section about-section">
-        <div className="site-shell about-grid">
-          <Reveal><span className="eyebrow">02 / A little about me</span><h2 className="section-heading">One engineer.<br />Two connected disciplines.</h2></Reveal>
-          <Reveal delay={.08} className="about-copy">
-            <p>I’m an engineer whose work spans food engineering and software. My academic foundation taught me to study process, materials, and the conditions behind a result.</p>
-            <p>Today I build software products and lead technical delivery, while exploring how computational methods can support better decisions and more efficient industrial processes.</p>
-            <p><Link className="text-link" href="/engineering">Explore my engineering & research <FiArrowUpRight className="arrow" /></Link></p>
-            <div className="experience-list" aria-label="Selected experience">
-              {experience.map((item) => <div className="experience-row" key={item.role}><time>{item.period}</time><strong>{item.role}</strong><span>{item.company}</span></div>)}
-            </div>
-            <div className="skills-row" aria-label="Areas of practice">
-              {["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Python", "APIs", "Technical leadership", "Product delivery"].map((skill) => <span className="skill-tag" key={skill}>{skill}</span>)}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="recognition" className="section recognition-section">
+      <section className="growth-section">
         <div className="site-shell">
-          <Reveal className="section-intro">
-            <div><span className="eyebrow">03 / Selected recognition</span><h2 className="section-heading">A few milestones<br />along the way.</h2></div>
-            <p>Selected software and professional development highlights. A fuller list is in the credentials archive.</p>
-          </Reveal>
-          <div className="recognition-grid">
-            <Reveal className="recognition-card"><span className="year">2025 · INTERNPULSE</span><div><h3>Finalist — top 1% of Cohort 6</h3><p>Frontend Development · InternPulse</p></div></Reveal>
-            <Reveal delay={.07} className="recognition-card"><span className="year">2025 · ALX</span><div><h3>Back-End Web Development</h3><p>Software Engineering Programme</p></div></Reveal>
-            <Reveal delay={.14} className="recognition-card"><span className="year">2022 · ALX</span><div><h3>Virtual Assistant — With Honors</h3><p>Virtual Assistant Programme</p></div></Reveal>
+          <div className="section-head">
+            <h2 className="section-title">How my stack grew</h2>
+            <p>Each year added a layer. The record is in my GitHub history, from the first HTML pages to cloud services.</p>
           </div>
-          <div className="recognition-footer"><span>Also: ALX Professional Foundations, AI Starter Kit, and food engineering training.</span><Link className="text-link" href="/credentials">View all credentials <FiArrowUpRight className="arrow" /></Link></div>
+          <StackGrowth />
+        </div>
+      </section>
+
+      <section id="about" className="about-section">
+        <div className="site-shell about-layout">
+          <div>
+            <h2 className="section-title">About</h2>
+            <p className="about-lead">I came to software from food engineering, and I still think like a process engineer: understand the system, find where it leaks, then build the thing that fixes it.</p>
+            <p className="about-text">Today I build products at Leaders Network and ship my own work in civic tech and agriculture. I’m now deepening the side many product engineers hand off, CI, containers, cloud and operations, through TS Academy’s DevOps programme.</p>
+            <p className="about-links">
+              <Link className="text-link" href="/engineering">Engineering and research background <FiArrowUpRight className="arrow" /></Link>
+              <Link className="text-link" href="/credentials">Credentials <FiArrowUpRight className="arrow" /></Link>
+            </p>
+          </div>
+          <div>
+            <h3 className="list-title">Experience</h3>
+            <ul className="experience-table">
+              {experience.map((item) => (
+                <li key={item.role}><span>{item.period}</span><strong>{item.role}</strong><span>{item.company}</span></li>
+              ))}
+            </ul>
+            <h3 className="list-title">Recognition and learning</h3>
+            <ul className="experience-table">
+              {recognition.map((item) => (
+                <li key={item.role}><span>{item.period}</span><strong>{item.role}</strong><span>{item.company}</span></li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
       <section id="contact" className="contact-section">
-        <div className="site-shell contact-grid">
-          <div><span className="eyebrow">Have something in mind?</span><h2>Let’s build something meaningful.</h2><p>Have an idea, an opportunity, or a problem worth working through? I’d be glad to hear from you.</p></div>
-          <a className="contact-button" href={`mailto:${contactEmail}`}>Get in<br />touch <FiArrowUpRight size={18} /></a>
+        <div className="site-shell contact-layout">
+          <h2>Have a product that needs building?</h2>
+          <p>Tell me what you’re working on and what’s in the way.</p>
+          <div className="contact-actions">
+            <Magnetic strength={0.4}><a className="contact-button" href={`mailto:${contactEmail}`} data-cursor="Write">Email me</a></Magnetic>
+            <a className="text-link" href="https://www.linkedin.com/in/bolajeee/" target="_blank" rel="noreferrer">LinkedIn <FiArrowUpRight className="arrow" /></a>
+            <a className="text-link" href="https://github.com/bolajeee" target="_blank" rel="noreferrer">GitHub <FiArrowUpRight className="arrow" /></a>
+          </div>
         </div>
       </section>
     </main>

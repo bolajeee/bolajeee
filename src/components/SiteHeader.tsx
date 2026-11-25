@@ -8,9 +8,8 @@ import { FiArrowUpRight, FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
 
 const links = [
   { label: "Work", href: "/#work" },
-  { label: "Engineering", href: "/engineering" },
   { label: "About", href: "/#about" },
-  { label: "Recognition", href: "/#recognition" },
+  { label: "Credentials", href: "/credentials" },
 ];
 
 export default function SiteHeader() {
@@ -46,7 +45,7 @@ export default function SiteHeader() {
             >
               {mounted && resolvedTheme === "dark" ? <FiSun size={17} /> : <FiMoon size={17} />}
             </button>
-            <Link href="/#contact" className="header-cta">Let’s talk <FiArrowUpRight size={14} /></Link>
+            <Link href="/#contact" className="header-cta">Get in touch</Link>
             <button
               className="menu-toggle"
               aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}

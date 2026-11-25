@@ -22,7 +22,7 @@ export default function CredentialsArchive() {
       <section className="archive-intro">
         <p className="eyebrow">Selected recognition · learning</p>
         <h1>Proof of curiosity, practice, and progress.</h1>
-        <p className="case-lede">A considered archive of software, AI, professional development, and food engineering credentials.</p>
+        <p className="case-summary">A considered archive of software, AI, professional development, and food engineering credentials.</p>
       </section>
 
       <section aria-labelledby="credential-highlights">

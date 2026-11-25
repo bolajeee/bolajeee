@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import "./showcase.css";
 import { ThemeProviders } from "@/components/ThemeProviders";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import Cursor from "@/components/Cursor";
 import localFont from "next/font/local";
 
 const geistSans = localFont({
@@ -18,15 +20,15 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Bolajeee — Engineer at Heart, Builder by Practice",
+    default: "Omobolaji Ibrahim (Bolajeee) — Software Engineer",
     template: "%s — Bolajeee",
   },
-  description: "Omobolaji Ibrahim (Bolajeee) is an interdisciplinary engineer working across food engineering, software, research, and technical leadership.",
-  keywords: ["Omobolaji Ibrahim", "Bolajeee", "food engineering", "software engineer", "engineering research", "technical lead"],
+  description: "Omobolaji Ibrahim is a software engineer who takes products from idea to production: the interface, the APIs and data behind it, and the infrastructure that ships and runs it.",
+  keywords: ["Omobolaji Ibrahim", "Bolajeee", "software engineer", "DevOps", "cloud", "full-stack", "Next.js", "React", "Flutter"],
   authors: [{ name: "Omobolaji Ibrahim" }],
   openGraph: {
-    title: "Bolajeee — An engineer at heart. A builder by practice.",
-    description: "Food engineering research and software product work by Omobolaji Ibrahim.",
+    title: "Omobolaji Ibrahim — I build the systems behind products people rely on.",
+    description: "Software engineer. From idea to production: interface, APIs, data and infrastructure.",
     type: "website",
   },
 };
@@ -50,6 +52,7 @@ export default function RootLayout({
           <SiteHeader />
           {children}
           <SiteFooter />
+          <Cursor />
         </ThemeProviders>
       </body>
     </html>

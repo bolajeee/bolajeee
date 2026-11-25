@@ -1,83 +1,244 @@
+export type DemoKind = "cluster" | "workflow" | "screening" | "plan";
+
+export type Layer = "Interface" | "Application" | "Data" | "Delivery";
+
 export type FeaturedProject = {
   slug: string;
-  number: string;
-  discipline: string;
   title: string;
-  short: string;
-  context: string;
+  sector: string;
+  year: string;
   role: string;
-  visual: "screening" | "insurance" | "revenue";
-  link?: string;
+  status: string;
+  summary: string;
+  problem: string;
+  built: string[];
+  decisions: { title: string; text: string }[];
+  stack: string[];
+  layers: { layer: Layer; tech: string }[];
+  demo: DemoKind;
+  demoTitle: string;
+  demoNote: string;
+  images: { desktop: string; mobile?: string; alt: string; url: string };
+  links: { label: string; href: string }[];
 };
 
 export const featuredProjects: FeaturedProject[] = [
   {
-    slug: "leaders-cv-checker",
-    number: "01",
-    discipline: "AI · Full-stack",
-    title: "Leaders CV Checker",
-    short: "A clearer way to review candidates at scale.",
-    context:
-      "An AI-assisted recruitment product centered on bulk CV analysis and structured screening workflows for recruiters.",
+    slug: "civicai",
+    title: "CivicAI",
+    sector: "Civic tech, AI",
+    year: "2026",
     role: "Software engineering",
-    visual: "screening",
+    status: "In development. Runs locally and in CI, not yet deployed.",
+    summary:
+      "Citizens report broken roads, flooding and waste from their phones. CivicAI turns overlapping reports into a ranked list of real problems for government teams.",
+    problem:
+      "Ten people photographing the same pothole is ten reports, but one problem. Government teams need the problem, its severity and where it is, not a feed of duplicates.",
+    built: [
+      "A Flutter citizen app for Android and iOS, including SOS: it finds nearby emergency facilities and texts the citizen's trusted contacts.",
+      "A React and TypeScript government dashboard for reviewing clustered issues on a map.",
+      "A Fastify API in TypeScript over Supabase Postgres 17, with PostGIS for location and pgvector for report embeddings.",
+    ],
+    decisions: [
+      {
+        title: "A report is an observation. A cluster is the problem.",
+        text: "The data model separates what a citizen saw from the civic problem underneath it, so duplicates strengthen an issue instead of burying it.",
+      },
+      {
+        title: "AI workers inside the API, each behind a flag",
+        text: "Classification, severity, text and image embeddings, duplicate detection, clustering and priority run as background workers in the API process. Each is off by default, so there is no separate AI service to operate.",
+      },
+      {
+        title: "Location and similarity in one database",
+        text: "PostGIS answers “what is near this report?” and pgvector answers “what looks like this report?”. Both live in Postgres, so a duplicate check is one query, not two systems.",
+      },
+      {
+        title: "Row-level security on every public table",
+        text: "Access rules are enforced by the database itself through migrations, not only by the API.",
+      },
+    ],
+    stack: ["Flutter", "React", "TypeScript", "Fastify", "Postgres", "PostGIS", "pgvector", "Supabase"],
+    layers: [
+      { layer: "Interface", tech: "Flutter citizen app, React and TypeScript dashboard" },
+      { layer: "Application", tech: "Fastify API with background AI workers behind flags" },
+      { layer: "Data", tech: "Postgres 17 with PostGIS, pgvector and row-level security" },
+      { layer: "Delivery", tech: "GitHub Actions CI, Supabase migrations" },
+    ],
+    demo: "cluster",
+    demoTitle: "Watch reports become issues",
+    demoNote: "An illustration of the clustering idea with simulated reports, not live data.",
+    images: { desktop: "/assets/work/civicai-desktop.webp", mobile: "/assets/work/civicai-mobile.webp", alt: "CivicAI government workspace sign-in screen", url: "https://civic-ai-cyan.vercel.app" },
+    links: [{ label: "Source on GitHub", href: "https://github.com/bolajeee/Civic-ai" }],
   },
   {
     slug: "builders-liability",
-    number: "02",
-    discipline: "Insurance · Platform",
-    title: "Builders’ Liability Insurance Platform",
-    short: "Insurance workflows built around the realities of construction.",
-    context:
-      "A digital platform connecting insurance workflows with construction-sector stakeholders, including policy and claims operations.",
-    role: "Technical leadership",
-    visual: "insurance",
-    link: "https://fctbuilders.gladfaith.com/",
+    title: "Builders’ Liability",
+    sector: "Insurance platform",
+    year: "2025",
+    role: "Software engineering",
+    status: "Live",
+    summary:
+      "A digital insurance portal for construction in the FCT. Owners request cover, two independent surveyors assess the site, and AMMC and NIA administrators issue and manage policies.",
+    problem:
+      "Compulsory builders’ liability cover involved property owners, surveyors and two regulators passing paperwork between them. Every hand-off was a place for a request to stall.",
+    built: [
+      "A Next.js 14 and TypeScript frontend with five role-based workspaces: property owner, AMMC admin, NIA admin, surveyor and super admin.",
+      "A Node.js, Express and MongoDB API covering authentication, properties, policy generation, documents and notifications.",
+      "Document upload and report download for survey evidence, with real-time assignment tracking.",
+    ],
+    decisions: [
+      {
+        title: "Two surveyors per request",
+        text: "Each request is assigned to two independent surveyors, and the platform coordinates both reports before a policy decision, instead of trusting a single assessment.",
+      },
+      {
+        title: "Five roles, one codebase",
+        text: "Every role has its own routes and dashboard, scoped by the authenticated user, so a surveyor and a regulator see the same request through different lenses.",
+      },
+      {
+        title: "Security at the edges",
+        text: "JWT sessions, OTP email verification for sensitive changes, API-key protected routes and rate limiting on the API.",
+      },
+    ],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Cloudinary"],
+    layers: [
+      { layer: "Interface", tech: "Next.js 14 and TypeScript, five role-based workspaces" },
+      { layer: "Application", tech: "Express API with JWT, OTP verification and rate limiting" },
+      { layer: "Data", tech: "MongoDB, Cloudinary for survey documents" },
+      { layer: "Delivery", tech: "Vercel" },
+    ],
+    demo: "workflow",
+    demoTitle: "Follow a request through the platform",
+    demoNote: "A simplified walkthrough of the request lifecycle. Steps are condensed.",
+    images: { desktop: "/assets/work/builders-desktop.webp", alt: "Builders’ Liability portal home page", url: "https://fctbuilders.gladfaith.com" },
+    links: [{ label: "Visit the platform", href: "https://fctbuilders.gladfaith.com/" }],
   },
   {
-    slug: "revenue-assurance",
-    number: "03",
-    discipline: "Data · Engineering",
-    title: "Revenue Assurance & Commission Intelligence",
-    short: "Making complex financial operations easier to understand.",
-    context:
-      "A data-oriented platform concept for reconciliation, audit trails, operational insight, and commission workflows.",
+    slug: "leaders-cv-checker",
+    title: "Leaders CV Checker",
+    sector: "Recruitment, SaaS",
+    year: "2026",
     role: "Software engineering",
-    visual: "revenue",
+    status: "Live",
+    summary:
+      "Recruiters set the skills, experience, location and certifications a role needs, upload a batch of CVs, and see who matches, ranked by score.",
+    problem:
+      "Screening a stack of CVs by hand is slow and inconsistent. Recruiters needed a structured first pass they could trust, and a paid product that bills correctly every time.",
+    built: [
+      "Bulk PDF upload and parsing, with rule-based matching across skills, experience, location and certifications.",
+      "Monthly and annual plans paid through Paystack, with upload allowances per period.",
+      "A rebuilt, server-rendered landing page where only navigation and pricing ship client JavaScript.",
+    ],
+    decisions: [
+      {
+        title: "Payments that can’t activate twice",
+        text: "Transactions start on the server, webhooks are trusted only after signature verification, and activation is idempotent, so a duplicate callback never grants a plan twice.",
+      },
+      {
+        title: "Allowances that hold under concurrency",
+        text: "Uploads reserve credits atomically and stay tied to the period they started in, so two batches at a month boundary can’t overspend.",
+      },
+      {
+        title: "Tests around money and calendars",
+        text: "27 tests cover leap-year and month-end anniversaries, expiry, trial fallback, concurrent batches, failed uploads and mismatched payments.",
+      },
+      {
+        title: "Only claims the product can back",
+        text: "Unverified ratings, testimonials and AI features were removed from the marketing copy. The landing page describes what the matching actually does.",
+      },
+    ],
+    stack: ["Next.js", "TypeScript", "Firebase", "Paystack", "PDF.js", "Cloudinary"],
+    layers: [
+      { layer: "Interface", tech: "Server-rendered Next.js landing page and dashboard" },
+      { layer: "Application", tech: "PDF parsing, matching rules, signed Paystack webhooks" },
+      { layer: "Data", tech: "Firebase with atomic upload reservations, Cloudinary" },
+      { layer: "Delivery", tech: "27 automated tests, type checks and lint before release" },
+    ],
+    demo: "screening",
+    demoTitle: "Change the role, watch the ranking",
+    demoNote: "Fictional candidates. A simplified version of the matching rules.",
+    images: { desktop: "/assets/work/cvchecker-desktop.webp", mobile: "/assets/work/cvchecker-mobile.webp", alt: "Leaders CV Checker landing page", url: "https://leaderscvchecker.com" },
+    links: [{ label: "Visit Leaders CV Checker", href: "https://leaderscvchecker.com" }],
+  },
+  {
+    slug: "furrow",
+    title: "Furrow",
+    sector: "Agritech, PWA",
+    year: "2026",
+    role: "Product and engineering",
+    status: "Landing page live. Pilot in planning.",
+    summary:
+      "A home-growing companion for busy Nigerian households: a weekly plan built around the time you actually have, starting with containers you already own.",
+    problem:
+      "Most first harvests fail on time, not knowledge. Advice assumes a free weekend and a garden; Furrow starts from a busy week, a balcony and what is already in the house.",
+    built: [
+      "The product spec, feature IDs with acceptance criteria, data model and API contracts for the pilot.",
+      "A responsive Next.js landing page with a pilot signup that posts to a configurable webhook.",
+      "The architecture for an installable PWA on Supabase with row-level security, Paystack and web-push reminders.",
+    ],
+    decisions: [
+      {
+        title: "An installable web app, not a native one",
+        text: "Households open it from a link with no app-store install. The trade-off, weaker background work and push on some browsers, is written down rather than discovered later.",
+      },
+      {
+        title: "An assistant that only talks farming",
+        text: "The planned assistant checks scope and safety before answering, is grounded in reviewed crop guides, and enforces spending caps before calling the model.",
+      },
+      {
+        title: "No invented numbers",
+        text: "No prices, yields, savings or community figures appear anywhere until the pilot measures them.",
+      },
+    ],
+    stack: ["Next.js", "TypeScript", "Supabase", "Paystack", "PWA"],
+    layers: [
+      { layer: "Interface", tech: "Installable mobile-first web app, Next.js landing page" },
+      { layer: "Application", tech: "Specified server routes, scoped AI assistant, payments" },
+      { layer: "Data", tech: "Supabase Postgres with row-level security (designed)" },
+      { layer: "Delivery", tech: "Vercel for the live landing page; scheduled reminders designed" },
+    ],
+    demo: "plan",
+    demoTitle: "A plan that fits your week",
+    demoNote: "An illustration of the planning idea, not pilot data.",
+    images: { desktop: "/assets/work/furrow-desktop.webp", mobile: "/assets/work/furrow-mobile.webp", alt: "Furrow landing page", url: "https://furrow-landing.vercel.app" },
+    links: [{ label: "Visit Furrow", href: "https://furrow-landing.vercel.app" }],
   },
 ];
 
-export const otherProjects = [
-  {
-    title: "Temperature’s Couture",
-    description: "Fashion commerce experience",
-    image: "/assets/proj1.png",
-    href: "https://munis-world.vercel.app/",
-  },
-  {
-    title: "Admin Management System",
-    description: "Tasks, messages, and reporting",
-    image: "/assets/proj2.png",
-    href: "https://admin-management-frontend.vercel.app/",
-  },
-  {
-    title: "AI Summarizer",
-    description: "Article summarization tool",
-    image: "/assets/proj3.png",
-    href: "https://ai-summarizer-sable-six.vercel.app/",
-  },
-  {
-    title: "Fitness Tracker API",
-    description: "Django REST API · walkthrough",
-    image: "/assets/proj4.png",
-    href: "https://www.loom.com/share/6c4649e79ef048abb4314ad807e9070e?sid=4e61fae3-f5b1-4fd8-99d8-d92efc946945",
-  },
-  {
-    title: "Knightsbridge Gas Energy",
-    description: "Corporate website redesign",
-    image: "/assets/proj-knightsbridge.svg",
-    href: "https://knightsbridgeng.com/",
-  },
+export type OtherProject = { title: string; description: string; stack: string; href?: string; image?: string; note?: string };
+
+export const otherProjects: OtherProject[] = [
+  { title: "Finance management app", description: "Authentication, budgeting, transaction tracking and data aggregation services", stack: "Node.js, Express, MongoDB", note: "Private" },
+  { title: "Social platform architecture", description: "API contracts, Redis caching and WebSocket notifications for real-time updates", stack: "Node.js, Redis, WebSockets", note: "Private" },
+  { title: "Segment Context Service", description: "Multi-tenant event processing with AI-generated customer personas", stack: "Python, Docker, Cloud Run, Pub/Sub, Cloud SQL, Vertex AI", note: "Private" },
+  { title: "Learn Gauge", description: "Workspace for an AI STEM tutor: lessons, quizzes and progress", stack: "Next.js, TypeScript", href: "https://learn-guage.vercel.app", image: "/assets/work/learngauge-desktop.webp" },
+  { title: "Revenue Assurance", description: "Reconciliation, audit trails and commission workflows", stack: "Data engineering", note: "Private" },
+  { title: "Temperature’s Couture", description: "Fashion commerce storefront", stack: "Next.js, TypeScript", href: "https://munis-world.vercel.app/", image: "/assets/proj1.png" },
+  { title: "Admin Management System", description: "Tasks, messages and reporting, with its own REST API", stack: "React, Node.js, Express", href: "https://admin-management-frontend.vercel.app/", image: "/assets/proj2.png" },
+  { title: "Fitness Tracker API", description: "ALX capstone: activity tracking, metrics and JWT-secured access", stack: "Django REST Framework, PostgreSQL", href: "https://www.loom.com/share/6c4649e79ef048abb4314ad807e9070e?sid=4e61fae3-f5b1-4fd8-99d8-d92efc946945", image: "/assets/proj4.png" },
+  { title: "Knightsbridge Gas Energy", description: "Corporate website redesign", stack: "Web design", href: "https://knightsbridgeng.com/", image: "/assets/proj-knightsbridge.svg" },
+];
+
+export const capabilities = [
+  { title: "Interfaces", text: "Responsive, accessible UI on the web and on phones, with motion that explains what changed. Backed by a year working as a graphic designer.", tools: "React, Next.js, Flutter, React Native, Tailwind CSS, Motion, WebGL" },
+  { title: "Application and APIs", text: "REST contracts, authentication, background workers and real-time updates that hold up when traffic and edge cases arrive.", tools: "Node.js, Fastify, Express, Django REST Framework, Python, JWT, WebSockets" },
+  { title: "Data", text: "Relational models, geospatial and vector search, row-level security, caching, migrations and payments that never apply twice.", tools: "Postgres, PostGIS, pgvector, MySQL, MongoDB, Redis, Supabase, Firebase" },
+  { title: "Infrastructure and delivery", text: "Containers, CI pipelines and cloud services that ship the code and keep it running. I’m deepening this layer now through TS Academy’s DevOps programme.", tools: "Docker, GitHub Actions, Google Cloud Run, Pub/Sub, Cloud SQL, Vercel, Netlify" },
+  { title: "Practical AI", text: "Classification, embeddings, duplicate detection and LLM features with scope checks, flags and cost caps.", tools: "OpenAI, Gemini, Claude, Vertex AI" },
+  { title: "Working in teams", text: "Two years leading a team at Kuagi Resources, and day-to-day Agile delivery with branches, pull requests and code reviews.", tools: "GitHub, Postman, Agile delivery" },
+];
+
+export const stackLayers = ["Interface", "Mobile", "Application", "Data", "AI", "Infrastructure"] as const;
+
+// Each period lists the layers it added; the growth grid fills cumulatively from this.
+// Dates come from repository history and LinkedIn.
+export const trajectory: { period: string; added: (typeof stackLayers)[number][]; title: string; detail: string }[] = [
+  { period: "2022", added: ["Interface"], title: "First websites", detail: "HTML and CSS, one small site after another." },
+  { period: "2023", added: [], title: "JavaScript and React", detail: "Browser apps, then React. Alongside: leading a team at Kuagi Resources and quality assurance at OK Foods." },
+  { period: "2024", added: ["Application", "Data", "AI"], title: "My first full stack", detail: "A MERN app with Express and MongoDB, TypeScript, and an AI summariser on a hosted model. Finished my engineering degree." },
+  { period: "2025", added: [], title: "Production backends", detail: "Fintech frontend at InternPulse, a Django REST capstone at ALX, then Node.js, Redis and WebSockets at Leaders Network." },
+  { period: "2026", added: ["Mobile", "Infrastructure"], title: "Whole products, in the cloud", detail: "Flutter apps, CivicAI and Leaders CV Checker end to end, event processing on Cloud Run and Pub/Sub, CI on GitHub Actions." },
+  { period: "Now", added: [], title: "DevOps engineering", detail: "TS Academy’s DevOps programme: containers, pipelines and operations for every project." },
 ];
 
 export const credentials = [
@@ -95,11 +256,21 @@ export const credentials = [
 ];
 
 export const experience = [
-  { period: "2025 — now", role: "Technical Lead · Builders’ Liability Insurance Platform", company: "Kuagi Resources" },
-  { period: "2024 — now", role: "Senior Software Engineer", company: "Leaders Network" },
-  { period: "2022 — 2024", role: "Business Management Team Lead", company: "Kuagi Resources" },
-  { period: "2023", role: "Quality Assurance", company: "OK Foods" },
+  { period: "2025 – now", role: "Software Engineer", company: "Leaders Network" },
+  { period: "2024 – 2025", role: "Graphic Designer", company: "CMX Connect Lagos" },
+  { period: "2025", role: "Software Engineer, capstone", company: "ALX" },
+  { period: "2025", role: "Frontend Developer", company: "InternPulse" },
+  { period: "2023 – 2025", role: "Team Lead Manager", company: "Kuagi Resources" },
+  { period: "2023", role: "Quality Assurance Intern", company: "OK Foods" },
+];
+
+export const recognition = [
+  { period: "Now", role: "DevOps Engineering programme", company: "TS Academy" },
+  { period: "2025", role: "Finalist, top 1% of Cohort 6, Frontend Development", company: "InternPulse" },
+  { period: "Award", role: "Exceptional Leadership Award", company: "" },
+  { period: "Award", role: "NUESA 60 most reputable", company: "NUESA" },
+  { period: "2024", role: "B.Eng. Food and Bioprocess Engineering, Second Class Upper", company: "University of Ilorin" },
 ];
 
 export const resumeUrl = "https://drive.google.com/file/d/1oVrM1SqjUSLeoEXaxzX-wVJs1jXSRv1D/view?usp=drive_link";
-export const contactEmail = "ibrahimomobolaji1999@gmail.com";
+export const contactEmail = "omobolaji.alt@gmail.com";
