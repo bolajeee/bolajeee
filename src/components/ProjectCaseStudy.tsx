@@ -1,72 +1,112 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { FiArrowLeft, FiArrowUpRight } from "react-icons/fi";
-import { featuredProjects } from "@/content/portfolio";
-import PortfolioArtwork from "@/components/ProjectArtwork";
+import { featuredProjects, type DemoKind } from "@/content/portfolio";
+import { BrowserFrame, PhoneFrame } from "@/components/DeviceFrames";
+import ClusterDemo from "@/components/demos/ClusterDemo";
+import WorkflowDemo from "@/components/demos/WorkflowDemo";
+import ScreeningDemo from "@/components/demos/ScreeningDemo";
+import PlanDemo from "@/components/demos/PlanDemo";
 
-const details: Record<string, { challenge: string; focus: string; contribution: string }> = {
-  "leaders-cv-checker": {
-    challenge: "Recruitment teams need a practical way to move through large volumes of candidate information while keeping the review process structured.",
-    focus: "The product brings bulk CV analysis and recruiter-facing screening workflows into one AI-assisted experience.",
-    contribution: "I work across software engineering and product delivery, helping turn a complex review process into a tool recruiters can use with clarity.",
-  },
-  "builders-liability": {
-    challenge: "Construction projects involve several stakeholders and insurance steps, from property information through policy administration and claims.",
-    focus: "The platform connects construction-sector stakeholders with digital insurance workflows, including policy administration, property surveys, and claims handling.",
-    contribution: "As technical lead, I help shape the platform and coordinate engineering work around the needs of the programme and its users.",
-  },
-  "revenue-assurance": {
-    challenge: "Revenue and commission operations depend on reconciling information across records while keeping decisions and adjustments traceable.",
-    focus: "The platform brings reconciliation, audit trails, and operational insight into a data-oriented workflow for commission intelligence.",
-    contribution: "My focus is on engineering systems that make operational data easier to follow, review, and act on.",
-  },
+const demos: Record<DemoKind, () => React.JSX.Element> = {
+  cluster: ClusterDemo,
+  workflow: WorkflowDemo,
+  screening: ScreeningDemo,
+  plan: PlanDemo,
 };
 
 export default function ProjectCaseStudy({ slug }: { slug: string }) {
-  const project = featuredProjects.find((item) => item.slug === slug);
+  const project = featuredProjects.find((item) => item.slug === slug)!;
   const reduceMotion = useReducedMotion();
-  if (!project) return null;
-  const content = details[slug];
-  const next = featuredProjects[(featuredProjects.indexOf(project) + 1) % featuredProjects.length];
+  const showcase = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: showcase, offset: ["start end", "end start"] });
+  const phoneY = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [80, -80]);
+  const browserY = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [24, -24]);
+
+  const index = featuredProjects.indexOf(project);
+  const next = featuredProjects[(index + 1) % featuredProjects.length];
+  const Demo = demos[project.demo];
 
   return (
-    <motion.main
-      initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: .4, ease: "easeOut" }}
-      className="site-shell"
-    >
-      <section className="case-hero">
-        <Link className="text-link" href="/#work"><FiArrowLeft /> Back to selected work</Link>
-        <p className="eyebrow" style={{ marginTop: "2.5rem" }}>{project.number} / {project.discipline}</p>
-        <h1>{project.title}</h1>
-        <p className="case-lede">{project.context}</p>
-        <div className="case-meta">
-          <div><span>Focus</span><strong>{project.discipline}</strong></div>
-          <div><span>Role</span><strong>{project.role}</strong></div>
-          <div><span>Project</span><strong>{project.title}</strong></div>
+    <main className="case">
+      <section className="site-shell case-head">
+        <Link className="text-link back-link" href="/#work"><FiArrowLeft /> All work</Link>
+        <motion.h1 initial={reduceMotion ? false : { opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>{project.title}</motion.h1>
+        <p className="case-summary">{project.summary}</p>
+        <dl className="case-facts">
+          <div><dt>Role</dt><dd>{project.role}</dd></div>
+          <div><dt>Year</dt><dd>{project.year}</dd></div>
+          <div><dt>Field</dt><dd>{project.sector}</dd></div>
+          <div><dt>Status</dt><dd>{project.status}</dd></div>
+        </dl>
+      </section>
+
+      <div ref={showcase} className={`site-shell case-showcase ${project.images.mobile ? "has-phone" : ""}`}>
+        <motion.div style={{ y: browserY }} className="case-browser">
+          <BrowserFrame src={project.images.desktop} alt={project.images.alt} url={project.images.url} priority sizes="(max-width: 900px) 94vw, 76vw" />
+        </motion.div>
+        {project.images.mobile && (
+          <motion.div style={{ y: phoneY }} className="case-phone">
+            <PhoneFrame src={project.images.mobile} alt={`${project.title} on a phone`} sizes="(max-width: 900px) 40vw, 20vw" />
+          </motion.div>
+        )}
+      </div>
+
+      <section className="site-shell case-section">
+        <h2>The problem</h2>
+        <p className="case-problem">{project.problem}</p>
+      </section>
+
+      <section className="site-shell case-section">
+        <h2>What I built</h2>
+        <ul className="built-list">
+          {project.built.map((item) => <li key={item}>{item}</li>)}
+        </ul>
+      </section>
+
+      <section className="case-demo-section">
+        <div className="site-shell">
+          <div className="case-demo-head">
+            <h2>{project.demoTitle}</h2>
+            <p>{project.demoNote}</p>
+          </div>
+          <Demo />
         </div>
       </section>
 
-      <div className="case-art-wrap"><PortfolioArtwork kind={project.visual} /></div>
+      <section className="site-shell case-section">
+        <h2>Engineering decisions</h2>
+        <div className="decision-list">
+          {project.decisions.map((decision) => (
+            <article key={decision.title}>
+              <h3>{decision.title}</h3>
+              <p>{decision.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-      <section className="case-body">
-        <h2>The challenge</h2><p>{content.challenge}</p>
-      </section>
-      <section className="case-body">
-        <h2>Product focus</h2><p>{content.focus}</p>
-      </section>
-      <section className="case-body">
-        <h2>My contribution</h2><p>{content.contribution}</p>
+      <section className="site-shell case-section">
+        <h2>Built with</h2>
+        <div>
+          <p className="stack-line">{project.stack.join(", ")}</p>
+          <p className="case-links">
+            {project.links.map((link) => (
+              <a key={link.href} className="text-link" href={link.href} target="_blank" rel="noreferrer">{link.label} <FiArrowUpRight className="arrow" /></a>
+            ))}
+          </p>
+        </div>
       </section>
 
-      {project.link && <p style={{ paddingBottom: "3rem" }}><a className="text-link" href={project.link} target="_blank" rel="noreferrer">Visit the public platform <FiArrowUpRight /></a></p>}
-      <div className="case-next">
-        <span className="muted">Next case study</span>
-        <Link className="text-link" href={`/work/${next.slug}`}>{next.title} <FiArrowUpRight className="arrow" /></Link>
-      </div>
-    </motion.main>
+      <Link href={`/work/${next.slug}`} className="case-next" data-cursor="Next">
+        <span className="site-shell">
+          <span className="case-next-label">Next project</span>
+          <span className="case-next-title">{next.title} <FiArrowUpRight /></span>
+        </span>
+      </Link>
+    </main>
   );
 }
