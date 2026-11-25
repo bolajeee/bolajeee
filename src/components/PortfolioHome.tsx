@@ -7,6 +7,7 @@ import { FiArrowDownRight, FiArrowUpRight } from "react-icons/fi";
 import { capabilities, contactEmail, experience, recognition, resumeUrl } from "@/content/portfolio";
 import WorkStage from "@/components/home/WorkStage";
 import MoreWork from "@/components/home/MoreWork";
+import StackGrowth from "@/components/home/StackGrowth";
 import Magnetic from "@/components/Magnetic";
 
 const HeroField = dynamic(() => import("@/components/home/HeroField"), { ssr: false });
@@ -32,7 +33,7 @@ export default function PortfolioHome() {
             <motion.span {...enter(0.3)}>people rely on.</motion.span>
           </h1>
           <motion.p className="hero-lede" {...enter(0.45)}>
-            I’m Omobolaji Ibrahim, a full-stack engineer. I design and ship web, mobile and AI products end to end, from Postgres schemas and payment webhooks to the interface in your hand.
+            I’m Omobolaji Ibrahim, a software engineer. I take products from idea to production: the interface, the APIs and data behind it, and the infrastructure that ships and runs it.
           </motion.p>
           <motion.div className="hero-actions" {...enter(0.55)}>
             <Magnetic><a className="button-solid" href="#work">See the work <FiArrowDownRight size={17} /></a></Magnetic>
@@ -47,7 +48,7 @@ export default function PortfolioHome() {
       <section id="work" className="work-section">
         <div className="site-shell section-head">
           <h2 className="section-title">Selected work</h2>
-          <p>Four products where the hard part was turning messy, many-sided input into one clear decision.</p>
+          <p>Four products I took across the stack, from the interface to where they run.</p>
         </div>
         <WorkStage />
         <div className="site-shell more-work">
@@ -59,8 +60,8 @@ export default function PortfolioHome() {
       <section className="capabilities-section">
         <div className="site-shell">
           <div className="section-head">
-            <h2 className="section-title">What I bring</h2>
-            <p>The work above, in five lines.</p>
+            <h2 className="section-title">The whole stack</h2>
+            <p>Every layer a product needs, and the one I’m deepening now.</p>
           </div>
           <dl className="capability-list">
             {capabilities.map((item) => (
@@ -76,12 +77,22 @@ export default function PortfolioHome() {
         </div>
       </section>
 
+      <section className="growth-section">
+        <div className="site-shell">
+          <div className="section-head">
+            <h2 className="section-title">How my stack grew</h2>
+            <p>Each year added a layer. The record is in my GitHub history, from the first HTML pages to cloud services.</p>
+          </div>
+          <StackGrowth />
+        </div>
+      </section>
+
       <section id="about" className="about-section">
         <div className="site-shell about-layout">
           <div>
             <h2 className="section-title">About</h2>
             <p className="about-lead">I came to software from food engineering, and I still think like a process engineer: understand the system, find where it leaks, then build the thing that fixes it.</p>
-            <p className="about-text">Today I build products at Leaders Network, from finance and insurance platforms to social apps, and ship my own work in civic tech and agriculture. I care about correctness where money and data are involved, and about craft where people meet the interface.</p>
+            <p className="about-text">Today I build products at Leaders Network and ship my own work in civic tech and agriculture. I’m now deepening the side many product engineers hand off, CI, containers, cloud and operations, through TS Academy’s DevOps programme.</p>
             <p className="about-links">
               <Link className="text-link" href="/engineering">Engineering and research background <FiArrowUpRight className="arrow" /></Link>
               <Link className="text-link" href="/credentials">Credentials <FiArrowUpRight className="arrow" /></Link>

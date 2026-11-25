@@ -67,6 +67,18 @@ export default function ProjectCaseStudy({ slug }: { slug: string }) {
         </ul>
       </section>
 
+      <section className="site-shell case-section">
+        <h2>Across the stack</h2>
+        <dl className="layer-list">
+          {project.layers.map((item) => (
+            <div key={item.layer}>
+              <dt>{item.layer}</dt>
+              <dd>{item.tech}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
       <section className="case-demo-section">
         <div className="site-shell">
           <div className="case-demo-head">

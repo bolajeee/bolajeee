@@ -1,5 +1,7 @@
 export type DemoKind = "cluster" | "workflow" | "screening" | "plan";
 
+export type Layer = "Interface" | "Application" | "Data" | "Delivery";
+
 export type FeaturedProject = {
   slug: string;
   title: string;
@@ -12,6 +14,7 @@ export type FeaturedProject = {
   built: string[];
   decisions: { title: string; text: string }[];
   stack: string[];
+  layers: { layer: Layer; tech: string }[];
   demo: DemoKind;
   demoTitle: string;
   demoNote: string;
@@ -25,7 +28,7 @@ export const featuredProjects: FeaturedProject[] = [
     title: "CivicAI",
     sector: "Civic tech, AI",
     year: "2026",
-    role: "Full-stack engineering",
+    role: "Software engineering",
     status: "In development. Runs locally and in CI, not yet deployed.",
     summary:
       "Citizens report broken roads, flooding and waste from their phones. CivicAI turns overlapping reports into a ranked list of real problems for government teams.",
@@ -55,6 +58,12 @@ export const featuredProjects: FeaturedProject[] = [
       },
     ],
     stack: ["Flutter", "React", "TypeScript", "Fastify", "Postgres", "PostGIS", "pgvector", "Supabase"],
+    layers: [
+      { layer: "Interface", tech: "Flutter citizen app, React and TypeScript dashboard" },
+      { layer: "Application", tech: "Fastify API with background AI workers behind flags" },
+      { layer: "Data", tech: "Postgres 17 with PostGIS, pgvector and row-level security" },
+      { layer: "Delivery", tech: "GitHub Actions CI, Supabase migrations" },
+    ],
     demo: "cluster",
     demoTitle: "Watch reports become issues",
     demoNote: "An illustration of the clustering idea with simulated reports, not live data.",
@@ -66,7 +75,7 @@ export const featuredProjects: FeaturedProject[] = [
     title: "Builders’ Liability",
     sector: "Insurance platform",
     year: "2025",
-    role: "Full-stack engineering",
+    role: "Software engineering",
     status: "Live",
     summary:
       "A digital insurance portal for construction in the FCT. Owners request cover, two independent surveyors assess the site, and AMMC and NIA administrators issue and manage policies.",
@@ -92,6 +101,12 @@ export const featuredProjects: FeaturedProject[] = [
       },
     ],
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Cloudinary"],
+    layers: [
+      { layer: "Interface", tech: "Next.js 14 and TypeScript, five role-based workspaces" },
+      { layer: "Application", tech: "Express API with JWT, OTP verification and rate limiting" },
+      { layer: "Data", tech: "MongoDB, Cloudinary for survey documents" },
+      { layer: "Delivery", tech: "Vercel" },
+    ],
     demo: "workflow",
     demoTitle: "Follow a request through the platform",
     demoNote: "A simplified walkthrough of the request lifecycle. Steps are condensed.",
@@ -133,6 +148,12 @@ export const featuredProjects: FeaturedProject[] = [
       },
     ],
     stack: ["Next.js", "TypeScript", "Firebase", "Paystack", "PDF.js", "Cloudinary"],
+    layers: [
+      { layer: "Interface", tech: "Server-rendered Next.js landing page and dashboard" },
+      { layer: "Application", tech: "PDF parsing, matching rules, signed Paystack webhooks" },
+      { layer: "Data", tech: "Firebase with atomic upload reservations, Cloudinary" },
+      { layer: "Delivery", tech: "27 automated tests, type checks and lint before release" },
+    ],
     demo: "screening",
     demoTitle: "Change the role, watch the ranking",
     demoNote: "Fictional candidates. A simplified version of the matching rules.",
@@ -170,6 +191,12 @@ export const featuredProjects: FeaturedProject[] = [
       },
     ],
     stack: ["Next.js", "TypeScript", "Supabase", "Paystack", "PWA"],
+    layers: [
+      { layer: "Interface", tech: "Installable mobile-first web app, Next.js landing page" },
+      { layer: "Application", tech: "Specified server routes, scoped AI assistant, payments" },
+      { layer: "Data", tech: "Supabase Postgres with row-level security (designed)" },
+      { layer: "Delivery", tech: "Vercel for the live landing page; scheduled reminders designed" },
+    ],
     demo: "plan",
     demoTitle: "A plan that fits your week",
     demoNote: "An illustration of the planning idea, not pilot data.",
@@ -183,7 +210,7 @@ export type OtherProject = { title: string; description: string; stack: string; 
 export const otherProjects: OtherProject[] = [
   { title: "Finance management app", description: "Authentication, budgeting, transaction tracking and data aggregation services", stack: "Node.js, Express, MongoDB", note: "Private" },
   { title: "Social platform architecture", description: "API contracts, Redis caching and WebSocket notifications for real-time updates", stack: "Node.js, Redis, WebSockets", note: "Private" },
-  { title: "Segment Context Service", description: "Multi-tenant event processing with AI-generated customer personas", stack: "Python, Cloud Run, Pub/Sub, Cloud SQL, Vertex AI", note: "Private" },
+  { title: "Segment Context Service", description: "Multi-tenant event processing with AI-generated customer personas", stack: "Python, Docker, Cloud Run, Pub/Sub, Cloud SQL, Vertex AI", note: "Private" },
   { title: "Learn Gauge", description: "Workspace for an AI STEM tutor: lessons, quizzes and progress", stack: "Next.js, TypeScript", href: "https://learn-guage.vercel.app", image: "/assets/work/learngauge-desktop.webp" },
   { title: "Revenue Assurance", description: "Reconciliation, audit trails and commission workflows", stack: "Data engineering", note: "Private" },
   { title: "Temperature’s Couture", description: "Fashion commerce storefront", stack: "Next.js, TypeScript", href: "https://munis-world.vercel.app/", image: "/assets/proj1.png" },
@@ -193,11 +220,25 @@ export const otherProjects: OtherProject[] = [
 ];
 
 export const capabilities = [
-  { title: "Products end to end", text: "From the schema and the API to the screen. I own features across the whole stack instead of handing them over a wall.", tools: "Next.js, React, Node.js, Fastify, Express, Python" },
-  { title: "Data that stays correct", text: "Relational models, geospatial and vector search, row-level security, idempotent payments, caching and event pipelines.", tools: "Postgres, PostGIS, pgvector, MySQL, MongoDB, Redis, Pub/Sub" },
-  { title: "Interfaces people enjoy", text: "Responsive, accessible UI with motion that explains what changed, on the web and on phones, shaped by a year working as a graphic designer.", tools: "TypeScript, React, Tailwind CSS, Motion, WebGL, Flutter, React Native" },
+  { title: "Interfaces", text: "Responsive, accessible UI on the web and on phones, with motion that explains what changed. Backed by a year working as a graphic designer.", tools: "React, Next.js, Flutter, React Native, Tailwind CSS, Motion, WebGL" },
+  { title: "Application and APIs", text: "REST contracts, authentication, background workers and real-time updates that hold up when traffic and edge cases arrive.", tools: "Node.js, Fastify, Express, Django REST Framework, Python, JWT, WebSockets" },
+  { title: "Data", text: "Relational models, geospatial and vector search, row-level security, caching, migrations and payments that never apply twice.", tools: "Postgres, PostGIS, pgvector, MySQL, MongoDB, Redis, Supabase, Firebase" },
+  { title: "Infrastructure and delivery", text: "Containers, CI pipelines and cloud services that ship the code and keep it running. I’m deepening this layer now through TS Academy’s DevOps programme.", tools: "Docker, GitHub Actions, Google Cloud Run, Pub/Sub, Cloud SQL, Vercel, Netlify" },
   { title: "Practical AI", text: "Classification, embeddings, duplicate detection and LLM features with scope checks, flags and cost caps.", tools: "OpenAI, Gemini, Claude, Vertex AI" },
-  { title: "Working in teams", text: "Two years leading a team at Kuagi Resources, and day-to-day Agile delivery with branches, pull requests and code reviews.", tools: "GitHub, Docker, Postman, Vercel" },
+  { title: "Working in teams", text: "Two years leading a team at Kuagi Resources, and day-to-day Agile delivery with branches, pull requests and code reviews.", tools: "GitHub, Postman, Agile delivery" },
+];
+
+export const stackLayers = ["Interface", "Mobile", "Application", "Data", "AI", "Infrastructure"] as const;
+
+// Each period lists the layers it added; the growth grid fills cumulatively from this.
+// Dates come from repository history and LinkedIn.
+export const trajectory: { period: string; added: (typeof stackLayers)[number][]; title: string; detail: string }[] = [
+  { period: "2022", added: ["Interface"], title: "First websites", detail: "HTML and CSS, one small site after another." },
+  { period: "2023", added: [], title: "JavaScript and React", detail: "Browser apps, then React. Alongside: leading a team at Kuagi Resources and quality assurance at OK Foods." },
+  { period: "2024", added: ["Application", "Data", "AI"], title: "My first full stack", detail: "A MERN app with Express and MongoDB, TypeScript, and an AI summariser on a hosted model. Finished my engineering degree." },
+  { period: "2025", added: [], title: "Production backends", detail: "Fintech frontend at InternPulse, a Django REST capstone at ALX, then Node.js, Redis and WebSockets at Leaders Network." },
+  { period: "2026", added: ["Mobile", "Infrastructure"], title: "Whole products, in the cloud", detail: "Flutter apps, CivicAI and Leaders CV Checker end to end, event processing on Cloud Run and Pub/Sub, CI on GitHub Actions." },
+  { period: "Now", added: [], title: "DevOps engineering", detail: "TS Academy’s DevOps programme: containers, pipelines and operations for every project." },
 ];
 
 export const credentials = [
