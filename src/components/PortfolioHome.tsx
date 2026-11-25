@@ -4,7 +4,7 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { motion, useReducedMotion } from "framer-motion";
 import { FiArrowDownRight, FiArrowUpRight } from "react-icons/fi";
-import { capabilities, contactEmail, experience, resumeUrl } from "@/content/portfolio";
+import { capabilities, contactEmail, experience, recognition, resumeUrl } from "@/content/portfolio";
 import WorkStage from "@/components/home/WorkStage";
 import MoreWork from "@/components/home/MoreWork";
 import Magnetic from "@/components/Magnetic";
@@ -32,7 +32,7 @@ export default function PortfolioHome() {
             <motion.span {...enter(0.3)}>people rely on.</motion.span>
           </h1>
           <motion.p className="hero-lede" {...enter(0.45)}>
-            I’m Omobolaji Ibrahim, a senior full-stack engineer. I design and ship web, mobile and AI products end to end, from Postgres schemas and payment webhooks to the interface in your hand.
+            I’m Omobolaji Ibrahim, a full-stack engineer. I design and ship web, mobile and AI products end to end, from Postgres schemas and payment webhooks to the interface in your hand.
           </motion.p>
           <motion.div className="hero-actions" {...enter(0.55)}>
             <Magnetic><a className="button-solid" href="#work">See the work <FiArrowDownRight size={17} /></a></Magnetic>
@@ -60,7 +60,7 @@ export default function PortfolioHome() {
         <div className="site-shell">
           <div className="section-head">
             <h2 className="section-title">What I bring</h2>
-            <p>The work above, in five sentences.</p>
+            <p>The work above, in five lines.</p>
           </div>
           <dl className="capability-list">
             {capabilities.map((item) => (
@@ -81,7 +81,7 @@ export default function PortfolioHome() {
           <div>
             <h2 className="section-title">About</h2>
             <p className="about-lead">I came to software from food engineering, and I still think like a process engineer: understand the system, find where it leaks, then build the thing that fixes it.</p>
-            <p className="about-text">Today I lead engineering on an insurance platform, build products at Leaders Network, and ship my own work in civic tech and agriculture. I care about correctness where money and data are involved, and about craft where people meet the interface.</p>
+            <p className="about-text">Today I build products at Leaders Network, from finance and insurance platforms to social apps, and ship my own work in civic tech and agriculture. I care about correctness where money and data are involved, and about craft where people meet the interface.</p>
             <p className="about-links">
               <Link className="text-link" href="/engineering">Engineering and research background <FiArrowUpRight className="arrow" /></Link>
               <Link className="text-link" href="/credentials">Credentials <FiArrowUpRight className="arrow" /></Link>
@@ -94,11 +94,11 @@ export default function PortfolioHome() {
                 <li key={item.role}><span>{item.period}</span><strong>{item.role}</strong><span>{item.company}</span></li>
               ))}
             </ul>
-            <h3 className="list-title">Recognition</h3>
+            <h3 className="list-title">Recognition and learning</h3>
             <ul className="experience-table">
-              <li><span>2025</span><strong>Finalist, top 1% of Cohort 6, Frontend Development</strong><span>InternPulse</span></li>
-              <li><span>2025</span><strong>Back-End Web Development</strong><span>ALX</span></li>
-              <li><span>2024</span><strong>B.Eng. Food Engineering, Second Class Upper</strong><span>University of Ilorin</span></li>
+              {recognition.map((item) => (
+                <li key={item.role}><span>{item.period}</span><strong>{item.role}</strong><span>{item.company}</span></li>
+              ))}
             </ul>
           </div>
         </div>

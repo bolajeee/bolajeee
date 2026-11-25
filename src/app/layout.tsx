@@ -20,15 +20,15 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Omobolaji Ibrahim (Bolajeee) — Senior Full-Stack Engineer",
+    default: "Omobolaji Ibrahim (Bolajeee) — Full-Stack Engineer",
     template: "%s — Bolajeee",
   },
-  description: "Omobolaji Ibrahim is a senior full-stack engineer who designs and ships web, mobile and AI products end to end: CivicAI, Builders’ Liability, Leaders CV Checker and Furrow.",
-  keywords: ["Omobolaji Ibrahim", "Bolajeee", "full-stack engineer", "software engineer", "Next.js", "React", "Flutter", "technical lead"],
+  description: "Omobolaji Ibrahim is a full-stack engineer who designs and ships web, mobile and AI products end to end: CivicAI, Builders’ Liability, Leaders CV Checker and Furrow.",
+  keywords: ["Omobolaji Ibrahim", "Bolajeee", "full-stack engineer", "software engineer", "Next.js", "React", "Flutter"],
   authors: [{ name: "Omobolaji Ibrahim" }],
   openGraph: {
     title: "Omobolaji Ibrahim — I build the systems behind products people rely on.",
-    description: "Senior full-stack engineer. Web, mobile and AI products, end to end.",
+    description: "Full-stack engineer. Web, mobile and AI products, end to end.",
     type: "website",
   },
 };

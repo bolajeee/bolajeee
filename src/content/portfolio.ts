@@ -66,7 +66,7 @@ export const featuredProjects: FeaturedProject[] = [
     title: "Builders’ Liability",
     sector: "Insurance platform",
     year: "2025",
-    role: "Technical lead",
+    role: "Full-stack engineering",
     status: "Live",
     summary:
       "A digital insurance portal for construction in the FCT. Owners request cover, two independent surveyors assess the site, and AMMC and NIA administrators issue and manage policies.",
@@ -181,21 +181,23 @@ export const featuredProjects: FeaturedProject[] = [
 export type OtherProject = { title: string; description: string; stack: string; href?: string; image?: string; note?: string };
 
 export const otherProjects: OtherProject[] = [
+  { title: "Finance management app", description: "Authentication, budgeting, transaction tracking and data aggregation services", stack: "Node.js, Express, MongoDB", note: "Private" },
+  { title: "Social platform architecture", description: "API contracts, Redis caching and WebSocket notifications for real-time updates", stack: "Node.js, Redis, WebSockets", note: "Private" },
   { title: "Segment Context Service", description: "Multi-tenant event processing with AI-generated customer personas", stack: "Python, Cloud Run, Pub/Sub, Cloud SQL, Vertex AI", note: "Private" },
   { title: "Learn Gauge", description: "Workspace for an AI STEM tutor: lessons, quizzes and progress", stack: "Next.js, TypeScript", href: "https://learn-guage.vercel.app", image: "/assets/work/learngauge-desktop.webp" },
   { title: "Revenue Assurance", description: "Reconciliation, audit trails and commission workflows", stack: "Data engineering", note: "Private" },
   { title: "Temperature’s Couture", description: "Fashion commerce storefront", stack: "Next.js, TypeScript", href: "https://munis-world.vercel.app/", image: "/assets/proj1.png" },
   { title: "Admin Management System", description: "Tasks, messages and reporting, with its own REST API", stack: "React, Node.js, Express", href: "https://admin-management-frontend.vercel.app/", image: "/assets/proj2.png" },
-  { title: "Fitness Tracker API", description: "REST API with a recorded walkthrough", stack: "Python, Django", href: "https://www.loom.com/share/6c4649e79ef048abb4314ad807e9070e?sid=4e61fae3-f5b1-4fd8-99d8-d92efc946945", image: "/assets/proj4.png" },
+  { title: "Fitness Tracker API", description: "ALX capstone: activity tracking, metrics and JWT-secured access", stack: "Django REST Framework, PostgreSQL", href: "https://www.loom.com/share/6c4649e79ef048abb4314ad807e9070e?sid=4e61fae3-f5b1-4fd8-99d8-d92efc946945", image: "/assets/proj4.png" },
   { title: "Knightsbridge Gas Energy", description: "Corporate website redesign", stack: "Web design", href: "https://knightsbridgeng.com/", image: "/assets/proj-knightsbridge.svg" },
 ];
 
 export const capabilities = [
   { title: "Products end to end", text: "From the schema and the API to the screen. I own features across the whole stack instead of handing them over a wall.", tools: "Next.js, React, Node.js, Fastify, Express, Python" },
-  { title: "Data that stays correct", text: "Relational models, geospatial and vector search, row-level security, idempotent payments and event pipelines.", tools: "Postgres, PostGIS, pgvector, Supabase, MongoDB, Pub/Sub" },
-  { title: "Interfaces people enjoy", text: "Responsive, accessible UI with motion that explains what changed, on the web and on phones.", tools: "TypeScript, Tailwind CSS, Motion, WebGL, Flutter" },
+  { title: "Data that stays correct", text: "Relational models, geospatial and vector search, row-level security, idempotent payments, caching and event pipelines.", tools: "Postgres, PostGIS, pgvector, MySQL, MongoDB, Redis, Pub/Sub" },
+  { title: "Interfaces people enjoy", text: "Responsive, accessible UI with motion that explains what changed, on the web and on phones, shaped by a year working as a graphic designer.", tools: "TypeScript, React, Tailwind CSS, Motion, WebGL, Flutter, React Native" },
   { title: "Practical AI", text: "Classification, embeddings, duplicate detection and LLM features with scope checks, flags and cost caps.", tools: "OpenAI, Gemini, Claude, Vertex AI" },
-  { title: "Leading delivery", text: "Technical lead on a multi-stakeholder platform: planning, reviews and keeping the team shipping.", tools: "GitHub Actions, Vercel, Docker, Postman" },
+  { title: "Working in teams", text: "Two years leading a team at Kuagi Resources, and day-to-day Agile delivery with branches, pull requests and code reviews.", tools: "GitHub, Docker, Postman, Vercel" },
 ];
 
 export const credentials = [
@@ -213,10 +215,20 @@ export const credentials = [
 ];
 
 export const experience = [
-  { period: "2025 – now", role: "Technical Lead, Builders’ Liability Insurance Platform", company: "Kuagi Resources" },
-  { period: "2024 – now", role: "Senior Software Engineer", company: "Leaders Network" },
-  { period: "2022 – 2024", role: "Business Management Team Lead", company: "Kuagi Resources" },
-  { period: "2023", role: "Quality Assurance", company: "OK Foods" },
+  { period: "2025 – now", role: "Software Engineer", company: "Leaders Network" },
+  { period: "2024 – 2025", role: "Graphic Designer", company: "CMX Connect Lagos" },
+  { period: "2025", role: "Software Engineer, capstone", company: "ALX" },
+  { period: "2025", role: "Frontend Developer", company: "InternPulse" },
+  { period: "2023 – 2025", role: "Team Lead Manager", company: "Kuagi Resources" },
+  { period: "2023", role: "Quality Assurance Intern", company: "OK Foods" },
+];
+
+export const recognition = [
+  { period: "Now", role: "DevOps Engineering programme", company: "TS Academy" },
+  { period: "2025", role: "Finalist, top 1% of Cohort 6, Frontend Development", company: "InternPulse" },
+  { period: "Award", role: "Exceptional Leadership Award", company: "" },
+  { period: "Award", role: "NUESA 60 most reputable", company: "NUESA" },
+  { period: "2024", role: "B.Eng. Food and Bioprocess Engineering, Second Class Upper", company: "University of Ilorin" },
 ];
 
 export const resumeUrl = "https://drive.google.com/file/d/1oVrM1SqjUSLeoEXaxzX-wVJs1jXSRv1D/view?usp=drive_link";
