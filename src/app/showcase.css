@@ -7,10 +7,11 @@
 .has-cursor, .has-cursor a, .has-cursor button, .has-cursor svg[data-cursor] { cursor: none; }
 .has-cursor input[type="range"], .has-cursor input[type="checkbox"] { cursor: pointer; }
 .cursor { position: fixed; top: 0; left: 0; z-index: 100; pointer-events: none; }
-.cursor-ring { position: absolute; display: grid; place-items: center; width: 14px; height: 14px; translate: -50% -50%; border-radius: 50%; background: var(--ink); color: var(--canvas); font-size: 0; font-weight: 600; transition: width .3s cubic-bezier(.22,1,.36,1), height .3s cubic-bezier(.22,1,.36,1), background .2s ease, font-size .2s ease; mix-blend-mode: difference; }
-.dark .cursor-ring { mix-blend-mode: normal; }
-.cursor-ring.is-hovering { width: 42px; height: 42px; background: color-mix(in srgb, var(--accent) 85%, transparent); mix-blend-mode: normal; }
-.cursor-ring.has-label { width: 76px; height: 76px; background: var(--accent); color: #181a1b; font-size: .78rem; }
+/* White + difference inverts whatever is underneath, so the ring stays visible on
+   cream, charcoal and lime surfaces alike, in both themes. */
+.cursor-ring { position: absolute; display: grid; place-items: center; width: 14px; height: 14px; translate: -50% -50%; border-radius: 50%; background: #fff; color: #000; mix-blend-mode: difference; font-size: 0; font-weight: 600; transition: width .3s cubic-bezier(.22,1,.36,1), height .3s cubic-bezier(.22,1,.36,1), font-size .2s ease; }
+.cursor-ring.is-hovering { width: 42px; height: 42px; }
+.cursor-ring.has-label { width: 76px; height: 76px; font-size: .78rem; }
 
 .magnetic { display: inline-block; }
 

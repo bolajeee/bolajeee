@@ -220,4 +220,4 @@ export const experience = [
 ];
 
 export const resumeUrl = "https://drive.google.com/file/d/1oVrM1SqjUSLeoEXaxzX-wVJs1jXSRv1D/view?usp=drive_link";
-export const contactEmail = "ibrahimomobolaji1999@gmail.com";
+export const contactEmail = "omobolaji.alt@gmail.com";
